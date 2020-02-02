@@ -8,7 +8,7 @@ firebase_admin.initialize_app(cred, {
 })
 db = firestore.client()
 
-import inspect,json
+import inspect,json,os
 
 path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
