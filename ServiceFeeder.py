@@ -2,16 +2,18 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-cred = credentials.Certificate("./eight-days-9e75a-firebase-adminsdk-47po1-8cd5d44953.json")
-firebase_admin.initialize_app(cred, {
-  'projectId' : 'eight-days-9e75a',
-})
-db = firestore.client()
+
 
 import inspect,json,os
 
 path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
+
+cred = credentials.Certificate(path+ "/eight-days-9e75a-firebase-adminsdk-47po1-8cd5d44953.json")
+firebase_admin.initialize_app(cred, {
+  'projectId' : 'eight-days-9e75a',
+})
+db = firestore.client()
 from DatabaseQuery import *
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
