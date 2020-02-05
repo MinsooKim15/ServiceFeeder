@@ -60,7 +60,7 @@ for place in placeList:
     query = session.query(Exchange).filter(Exchange.currencyUnit == place.currencyUnit)
     exchange = query.first()
     result  = {
-        u'score': placeMain.score,
+        u'score': int(placeMain.score),
         u'subtitle': place.subtitle,
         u'titleEng': place.titleEng,
         u'titleKor': place.titleKor,
@@ -71,9 +71,9 @@ for place in placeList:
             u'exchange': {
                 u"rateTitle": place.titleKor + u"의 환율",
                 u"rateDescription": exchange.rateDescription,
-                u"todayRate": exchange.todayRate,
-                u"weekAgoRate": exchange.weekAgoRate,
-                u"monthAgoRate": exchange.monthAgoRate,
+                u"todayRate": int(exchange.todayRate),
+                u"weekAgoRate": int(exchange.weekAgoRate),
+                u"monthAgoRate": int(exchange.monthAgoRate),
             },
         }
         result.update(exchangeResult)
@@ -82,8 +82,8 @@ for place in placeList:
             u'flight': {
                 u"flightTitle": place.titleKor + u"의 비행기 표 값",
                 u"flightDescription": flight.flightPriceDescription,
-                u"todayAverage": flight.flightTodayAverage,
-                u"todayMinimum": flight.flightTodayMinimum,
+                u"todayAverage": int(flight.flightTodayAverage),
+                u"todayMinimum": int(flight.flightTodayMinimum),
             },
         }
         result.update(flightResult)
@@ -92,9 +92,9 @@ for place in placeList:
             u'weather': {
                 u'weatherTitle': place.titleKor + u"의 날씨",
                 u'weatherDescription': weather.description,
-                u"seoulToday": weather.seoulToday,
-                u"placeAverage": weather.placeAverage,
-                u"rainDays": weather.rainDays
+                u"seoulToday": int(weather.seoulToday),
+                u"placeAverage": int(weather.placeAverage),
+                u"rainDays": int(weather.rainDays)
             },
         }
         result.update(weatherResult)
