@@ -45,6 +45,13 @@ session = Session()
 query = session.query(PlaceStatic)
 placeList = query.all()
 
+# 이미 있는 문서인지 체크하기 위한 Id List
+idList = []
+
+docs = db.collection(u'place').stream()
+for doc in docs:
+    idList.append(doc.id)
+
 for place in placeList:
     query = session.query(PlaceMainDesc).filter(PlaceMainDesc.placeId == place.placeId)
     placeMain = query.first()
@@ -98,9 +105,13 @@ for place in placeList:
             },
         }
         result.update(weatherResult)
-    doc_ref = db.collection(u'place').document(place.placeId)
 
-    doc_ref.update(result)
+    doc_ref = db.collection(u'place').document(place.placeId)
+    if place.placeId in idList:
+        doc_ref.update(result)
+    else:
+        doc_ref.set(result)
+
 mainLogger.info("Commit Data To FireStore" + str(len(placeList)))
 
 
