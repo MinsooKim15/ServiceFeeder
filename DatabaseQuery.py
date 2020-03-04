@@ -216,6 +216,7 @@ class PlaceStatic(Base):
     airport1 = Column(String(100))
     airport2 = Column(String(100))
     airport3 = Column(String(100))
+    imgUrl = Column(String(300))
     created = Column(DateTime)
 
 

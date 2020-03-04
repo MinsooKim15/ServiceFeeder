@@ -71,6 +71,7 @@ for place in placeList:
         u'subtitle': place.subtitle,
         u'titleEng': place.titleEng,
         u'titleKor': place.titleKor,
+        u'imgUrl' : place.imgUrl,
         u'updateDate' : datetime.now(),
     }
     if exchange is not None:
